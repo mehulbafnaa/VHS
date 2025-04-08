@@ -13,11 +13,11 @@ import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 
-from dog_heart_vhs.data import create_dataloaders
-from dog_heart_vhs.models.vit_regressor import DogHeartViTWithAttention
-from dog_heart_vhs.models.loss import AnatomicalLoss
-from dog_heart_vhs.utils.logger import setup_logger
-from dog_heart_vhs.utils.metrics import compute_metrics
+from data import create_dataloaders
+from models.vit_regressor import DogHeartViTWithAttention
+from models.loss import AnatomicalLoss
+from utils.logger import setup_logger
+from utils.metrics import compute_metrics
 
 
 def train_epoch(model, dataloader, criterion, optimizer, device, epoch, logger=None):
