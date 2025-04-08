@@ -1,0 +1,64 @@
+# Default configuration for dog heart VHS prediction
+
+# Data configuration
+data:
+  base_path: '/content/drive/MyDrive'  # Base path for data
+  batch_size: 16
+  augment: true  # Use data augmentation
+
+# Model configuration
+model:
+  backbone: 'vit_base_patch16_224'  # ViT backbone
+  pretrained: true
+  freeze_backbone: true  # Freeze backbone initially
+  num_points: 6  # Number of landmark points
+  img_size: 224  # Input image size
+
+# Loss configuration
+loss:
+  points_weight: 1.0
+  vhs_weight: 10.0
+  perimeter_weight: 0.0  # Will be enabled after first 10 epochs
+  shape_weight: 0.0
+
+# Training configuration
+training:
+  epochs: 30
+  learning_rate: 1e-5
+  weight_decay: 1e-4
+  grad_clip: 1.0
+  patience: 5  # Patience for learning rate scheduler
+  scheduler_factor: 0.5  # Factor by which to reduce learning rate
+  unfreeze_epoch: 10  # Epoch to unfreeze backbone
+  unfreeze_lr: 1e-6  # Learning rate after unfreezing
+
+# Validation configuration
+validation:
+  frequency: 1  # Validate every X epochs
+  save_best: true
+  metric: 'loss'  # Metric to determine best model
+
+# Logging configuration
+logging:
+  log_freq: 10  # Log every X batches
+  save_freq: 1  # Save checkpoint every X epochs
+
+# Output configuration
+output_dir: './output'
+visualization: true
+save_predictions: true
+
+# Hyperparameter tuning (for future use)
+hyperparameter_tuning:
+  enabled: false
+  param_grid:
+    learning_rate: [1e-4, 1e-5, 1e-6]
+    points_weight: [0.5, 1.0, 2.0]
+    vhs_weight: [5.0, 10.0, 15.0]
+
+# Hardware configuration
+hardware:
+  num_workers: 4  # Number of data loading workers
+  pin_memory: true  # Use pinned memory for faster GPU transfer
+  benchmark: true  # Use cudnn benchmark for optimized performance
+  deterministic: false  # Use deterministic algorithms (slower but reproducible)
