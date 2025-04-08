@@ -25,8 +25,6 @@ cd dog-heart-vhs
 # Install dependencies
 pip install -r requirements.txt
 
-# Optional: Install as a package
-pip install -e .
 ```
 
 ## Quick Start
