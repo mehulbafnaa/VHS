@@ -38,10 +38,10 @@ pip install -e .
 !pip install git+https://github.com/yourusername/dog-heart-vhs.git
 
 # Import the necessary modules
-from dog_heart_vhs.data import create_dataloaders
-from dog_heart_vhs.models import DogHeartViTWithOptimizedAttention
-from dog_heart_vhs.models.loss import AnatomicalLoss
-from dog_heart_vhs.scripts.train import train_model
+from VHS.data import create_dataloaders
+from VHS.models import DogHeartViTWithOptimizedAttention
+from VHS.models.loss import AnatomicalLoss
+from VHS.scripts.train import train_model
 ```
 
 ### Training
