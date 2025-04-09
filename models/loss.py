@@ -24,7 +24,7 @@ class AnatomicalLoss(nn.Module):
         shape_weight (float): Weight for the shape consistency loss
         smooth_l1_beta (float): Beta parameter for SmoothL1Loss
     """
-    def __init__(self, points_weight=1.0, vhs_weight=10.0, perimeter_weight=0.0, 
+    def __init__(self, points_weight=5.0, vhs_weight=1.0, perimeter_weight=0.0, 
                 shape_weight=0.0, smooth_l1_beta=0.1):
         super().__init__()
         self.points_weight = points_weight

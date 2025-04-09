@@ -109,6 +109,11 @@ class DogHeartViTWithAttention(nn.Module):
                 nn.init.xavier_uniform_(m.weight)
                 if m.bias is not None:
                     nn.init.constant_(m.bias, 0)
+
+        if hasattr(self, 'points_x_head') and hasattr(self.points_x_head, 'bias'):  
+            nn.init.constant_(self.points_x_head_bias, 0.0)
+        if hasattr(self, 'points_y_head') and hasattr(self.points_y_head, 'bias'):  
+            nn.init.constant_(self.points_y_head.bias, 0.0)
     
     def forward(self, x):
         """
