@@ -149,7 +149,7 @@ class DogHeartViTWithAttention(nn.Module):
         x_coords = torch.sigmoid(self.points_x_head(points_features).squeeze(-1)) * self.img_size  # [B, num_points]
         y_coords = torch.sigmoid(self.points_y_head(points_features).squeeze(-1)) * self.img_size  # [B, num_points]
 
-        x_coords = self.img_size - x_coords
+        x_coords = self.img_size - y_coords
 
         # Stack x,y coordinates
         points_pred = torch.stack([x_coords, y_coords], dim=2)  # [B, num_points, 2]
