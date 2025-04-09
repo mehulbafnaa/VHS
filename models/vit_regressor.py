@@ -143,9 +143,12 @@ class DogHeartViTWithAttention(nn.Module):
         
         # Predict x,y coordinates for each point
         # Outputs normalized coordinates [0,1] and scale to image dimensions
-        x_coords = self.points_x_head(points_features).squeeze(-1) * self.img_size  # [B, num_points]
-        y_coords = self.points_y_head(points_features).squeeze(-1) * self.img_size  # [B, num_points]
+        # x_coords = self.points_x_head(points_features).squeeze(-1) * self.img_size  # [B, num_points]
+        # y_coords = self.points_y_head(points_features).squeeze(-1) * self.img_size  # [B, num_points]
         
+        x_coords = torch.sigmoid(self.points_x_head(points_features).squeeze(-1)) * self.img_size  # [B, num_points]
+        y_coords = torch.sigmoid(self.points_y_head(points_features).squeeze(-1)) * self.img_size  # [B, num_points]
+
         # Stack x,y coordinates
         points_pred = torch.stack([x_coords, y_coords], dim=2)  # [B, num_points, 2]
         
